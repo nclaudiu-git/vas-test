@@ -1,12 +1,12 @@
 package com.hpe.tokenizer.scanners.json;
 
+import com.hpe.data.TokenType;
 import com.hpe.tokenizer.scanners.BeginsWithScanner;
-import com.hpe.tokenizer.utils.Token;
-import com.hpe.tokenizer.utils.TokenListWithRemainingText;
-import com.hpe.tokenizer.utils.TokenWithRemainingText;
+import com.hpe.data.Token;
+import com.hpe.tokenizer.types.TokenListWithRemainingText;
+import com.hpe.tokenizer.types.TokenWithRemainingText;
 import com.hpe.utils.Result;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 public class StartJsonObjectScanner extends JsonScanner {
@@ -19,7 +19,7 @@ public class StartJsonObjectScanner extends JsonScanner {
             return Result.error(result.getError());
         }
 
-        Token token = new Token(Token.Type.STRING, JSON_START_OBJECT);
+        Token token = new Token(TokenType.STRING, JSON_START_OBJECT);
         return Result.ok(new TokenListWithRemainingText(Collections.singletonList(token), result.getValue().getRemainingText()));
     }
 }

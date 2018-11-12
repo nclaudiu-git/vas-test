@@ -1,4 +1,6 @@
-package com.hpe.tokenizer.utils;
+package com.hpe.tokenizer.types;
+
+import com.hpe.data.Token;
 
 public class TokenWithRemainingText {
     private Token token;

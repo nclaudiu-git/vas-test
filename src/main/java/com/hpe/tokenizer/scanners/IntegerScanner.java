@@ -1,7 +1,8 @@
 package com.hpe.tokenizer.scanners;
 
-import com.hpe.tokenizer.utils.Token;
-import com.hpe.tokenizer.utils.TokenWithRemainingText;
+import com.hpe.data.Token;
+import com.hpe.data.TokenType;
+import com.hpe.tokenizer.types.TokenWithRemainingText;
 import com.hpe.tokenizer.utils.Utils;
 import com.hpe.utils.Result;
 
@@ -17,7 +18,7 @@ public class IntegerScanner {
         }
 
         if (buffer.length() > 0) {
-            Token token = new Token(Token.Type.INTEGER, buffer.toString());
+            Token token = new Token(TokenType.INTEGER, buffer.toString());
             return Result.ok(new TokenWithRemainingText(token, remainingText));
         }
         return Result.error(String.format("Invalid JSON string. Expected <%s> to begin with (optional) whitespaces followed by an INTEGER but got a STRING instead", text));

@@ -4,8 +4,8 @@ import com.hpe.tokenizer.scanners.json.EndJsonObjectScanner;
 import com.hpe.tokenizer.scanners.json.JsonScanner;
 import com.hpe.tokenizer.scanners.json.KeyValuesScanner;
 import com.hpe.tokenizer.scanners.json.StartJsonObjectScanner;
-import com.hpe.tokenizer.utils.Token;
-import com.hpe.tokenizer.utils.TokenListWithRemainingText;
+import com.hpe.data.Token;
+import com.hpe.tokenizer.types.TokenListWithRemainingText;
 import com.hpe.tokenizer.utils.Utils;
 import com.hpe.utils.Result;
 
@@ -23,7 +23,7 @@ import java.util.List;
  *
  * <p>
  * Assumptions:
- * <li>No nested objects</li>
+ * <li>No nested types</li>
  * <li>No unescaped strings i.e. no "Hello \"World!\""</li>
  * <li>Only strings or integer numbers for values</li>
  */

@@ -3,9 +3,9 @@ package com.hpe.tokenizer.scanners.json;
 import com.hpe.tokenizer.scanners.BeginsWithScanner;
 import com.hpe.tokenizer.scanners.StringScanner;
 import com.hpe.tokenizer.scanners.IntegerScanner;
-import com.hpe.tokenizer.utils.Token;
-import com.hpe.tokenizer.utils.TokenListWithRemainingText;
-import com.hpe.tokenizer.utils.TokenWithRemainingText;
+import com.hpe.data.Token;
+import com.hpe.tokenizer.types.TokenListWithRemainingText;
+import com.hpe.tokenizer.types.TokenWithRemainingText;
 import com.hpe.utils.Result;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class KeyValuesScanner extends JsonScanner {
 
     @Override
     public Result<TokenListWithRemainingText> run(String text) {
-        // nothing to do for empty objects
+        // nothing to do for empty types
         if (noKeyValueExists(text)) {
             return Result.ok(new TokenListWithRemainingText(new ArrayList<>(), text));
         }
@@ -55,11 +55,11 @@ public class KeyValuesScanner extends JsonScanner {
         // the next value might be either a string or an integer
         Result<TokenWithRemainingText> stringValueResult = BeginsWithScanner.run(remainingText, STRING_BEGIN_QUOTE);
         if (stringValueResult.isError()) {
-            Result<TokenWithRemainingText> integerValueResult = IntegerScanner.run(remainingText);
-            if (integerValueResult.isError()) {
-                return Result.error(integerValueResult.getError());
+            Result<TokenWithRemainingText> longValueResult = IntegerScanner.run(remainingText);
+            if (longValueResult.isError()) {
+                return Result.error(longValueResult.getError());
             }
-            valueToken = integerValueResult.getValue();
+            valueToken = longValueResult.getValue();
         } else {
             // the value is a string
             stringValueResult = StringScanner.run(remainingText);

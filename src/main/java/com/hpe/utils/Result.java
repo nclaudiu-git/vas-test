@@ -1,5 +1,6 @@
 package com.hpe.utils;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Result<T> {
@@ -31,7 +32,22 @@ public class Result<T> {
         return error.get();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Result<?> result = (Result<?>) o;
+        return Objects.equals(value, result.value) &&
+                Objects.equals(error, result.error);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, error);
+    }
+
+    @Override
     public String toString() {
-        return String.format("value<%s> error<%s>", value, error);
+        return String.format("Result<value=%s error=%s>", isError() ? "n/a" : value.get(), isError() ? error : "n/a");
     }
 }

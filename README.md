@@ -55,7 +55,7 @@ The service MUST implement the following requirements:
   -	Number of calls origin/destination grouped by country code (https://en.wikipedia.org/wiki/MSISDN)
   -	Relationship between OK/KO calls
   -	Average call duration grouped by country code (https://en.wikipedia.org/wiki/MSISDN)
-  -	Word occurrence ranking for the given words in message_content field.
+  -	Word occurrence ranking for the given words in message_content keyValue.
 
 - The service will have an HTTP endpoint (/kpis) that returns a set of counters related with the service:
   - Total number of processed JSON files

@@ -1,6 +1,6 @@
 package com.hpe.tokenizer.scanners.json;
 
-import com.hpe.tokenizer.utils.TokenListWithRemainingText;
+import com.hpe.tokenizer.types.TokenListWithRemainingText;
 import com.hpe.utils.Result;
 
 public abstract class JsonScanner {

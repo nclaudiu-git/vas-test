@@ -1,26 +1,22 @@
-package com.hpe.tokenizer.utils;
+package com.hpe.data;
 
 import java.util.Objects;
 
 public class Token {
-    private Type type;
+    private TokenType type;
     private String value;
 
-    public Token(Type type, String value) {
+    public Token(TokenType type, String value) {
         this.type = type;
         this.value = value;
     }
 
-    public Type getType() {
+    public TokenType getType() {
         return type;
     }
 
     public String getValue() {
         return value;
-    }
-
-    public enum Type {
-        STRING, INTEGER
     }
 
     @Override
