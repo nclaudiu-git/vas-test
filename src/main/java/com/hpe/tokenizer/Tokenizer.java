@@ -8,6 +8,9 @@ import com.hpe.data.Token;
 import com.hpe.tokenizer.types.TokenListWithRemainingText;
 import com.hpe.tokenizer.utils.Utils;
 import com.hpe.utils.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,9 @@ import java.util.List;
  * <li>No unescaped strings i.e. no "Hello \"World!\""</li>
  * <li>Only strings or integer numbers for values</li>
  */
+@Component
 public class Tokenizer {
+    private static final Logger logger = LoggerFactory.getLogger(Tokenizer.class);
 
     public static Result<List<Token>> run(String text) {
         try {
@@ -36,7 +41,7 @@ public class Tokenizer {
                     KeyValuesScanner.class,
                     EndJsonObjectScanner.class);
         } catch (InstantiationException | IllegalAccessException exception) {
-            exception.printStackTrace();
+            logger.debug("An error occured while extracting tokens out of JSON text.", exception);
             return Result.error("Unknown error. Possibly programmer error.");
         }
     }

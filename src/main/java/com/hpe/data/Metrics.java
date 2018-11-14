@@ -14,5 +14,5 @@ public class Metrics {
     private int okCallsCounter;
     private int koCallsCounter;
     private float averageCallDurationByCountryCode;
-    private List<WordRanking> wordsRanking;
+    private List<WordOccurrence> wordsRanking;
 }

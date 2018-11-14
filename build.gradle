@@ -30,6 +30,7 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-devtools")
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('com.googlecode.libphonenumber:libphonenumber:8.9.16')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('junit:junit:4.12')
 }

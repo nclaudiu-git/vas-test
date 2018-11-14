@@ -9,11 +9,19 @@ import java.util.Objects;
  */
 public class KeyValue<T> {
     private Field field;
-    private Result<T> value;
+    private Result<T> result;
 
-    public KeyValue(Field field, Result<T> value) {
+    public KeyValue(Field field, Result<T> result) {
         this.field = field;
-        this.value = value;
+        this.result = result;
+    }
+
+    public Field getField() {
+        return field;
+    }
+
+    public Result<T> getResult() {
+        return result;
     }
 
     @Override
@@ -22,16 +30,16 @@ public class KeyValue<T> {
         if (o == null || getClass() != o.getClass()) return false;
         KeyValue<?> keyValue = (KeyValue<?>) o;
         return field == keyValue.field &&
-                Objects.equals(value, keyValue.value);
+                Objects.equals(result, keyValue.result);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(field, value);
+        return Objects.hash(field, result);
     }
 
     @Override
     public String toString() {
-        return "KeyValue<field=" + field + ", value=" + value + ">";
+        return "KeyValue<field=" + field + ", result=" + result + ">";
     }
 }

@@ -2,8 +2,12 @@ package com.hpe.data;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-/** One of the fields in the JSON. */
+/**
+ * One of the fields in the JSON.
+ */
 public enum Field {
     MESSAGE_TYPE("message_type", MessageType.CALL, MessageType.MSG),
     TIMESTAMP("timestamp", MessageType.CALL, MessageType.MSG),
@@ -22,6 +26,12 @@ public enum Field {
     Field(String name, MessageType... messageTypes) {
         this.name = name;
         this.messageTypes = Arrays.asList(messageTypes);
+    }
+
+    public static Set<Field> ofMessageType(MessageType messageType) {
+        return Arrays.stream(values())
+                .filter(field -> field.messageTypes.contains(messageType))
+                .collect(Collectors.toSet());
     }
 
     public String getName() {

@@ -2,7 +2,6 @@ package com.hpe.parser;
 
 import com.hpe.data.*;
 import com.hpe.parser.utils.Utils;
-import com.hpe.data.Token;
 import com.hpe.utils.Result;
 
 import java.util.ArrayList;
