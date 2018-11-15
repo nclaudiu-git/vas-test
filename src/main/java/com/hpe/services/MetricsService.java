@@ -24,7 +24,7 @@ public class MetricsService {
         return Metrics.Builder.newInstance()
                 .withRowsWithMissingFieldsCounter(cacheService.getRowsWithMissingFieldsCounter(file))
                 .withMessagesWithBlankContentCounter(cacheService.getMessagesWithBlankContentCounter(file))
-                .withRowsWithFieldsErrors(cacheService.getRowsWithMissingFieldsCounter(file))
+                .withRowsWithFieldsErrors(cacheService.getRowsWithFieldsErrorsCounter(file))
                 .withOriginCallsCounterByCountryCode(cacheService.getOriginCallsByCountryCode(file))
                 .withDestinationCallsCounterByCountryCode(cacheService.getDestinationCallsByCountryCode(file))
                 .withOkCallsCounter(cacheService.getOkCallsCounter(file))

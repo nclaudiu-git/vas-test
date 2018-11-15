@@ -27,7 +27,7 @@ import java.util.List;
  * <p>
  * Assumptions:
  * <li>No nested types</li>
- * <li>No unescaped strings i.e. no "Hello \"World!\""</li>
+ * <li>No escaped strings i.e. no "Hello \"World!\""</li>
  * <li>Only strings or integer numbers for values</li>
  */
 @Component
