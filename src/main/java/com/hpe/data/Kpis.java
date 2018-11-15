@@ -1,5 +1,7 @@
 package com.hpe.data;
 
+import java.util.Map;
+
 /**
  * Wrapper for the Kpis that we need to evaluate.
  */
@@ -8,63 +10,88 @@ public class Kpis {
     private int totalRowsCounter;
     private int totalCallsCounter;
     private int totalMessagesCounter;
-    private int totalDistinctOriginCountryCodes;
-    private int totalDistinctDestinationCountryCodes;
-    private int jsonProcessDurationInMillis;
+    private long totalDistinctOriginCountryCodes;
+    private long totalDistinctDestinationCountryCodes;
+    private Map<String, Long> jsonProcessDurationInMillis;
+
+    private Kpis() {
+    }
 
     public int getProcessedJsonFilesCounter() {
         return processedJsonFilesCounter;
-    }
-
-    public void setProcessedJsonFilesCounter(int processedJsonFilesCounter) {
-        this.processedJsonFilesCounter = processedJsonFilesCounter;
     }
 
     public int getTotalRowsCounter() {
         return totalRowsCounter;
     }
 
-    public void setTotalRowsCounter(int totalRowsCounter) {
-        this.totalRowsCounter = totalRowsCounter;
-    }
-
     public int getTotalCallsCounter() {
         return totalCallsCounter;
-    }
-
-    public void setTotalCallsCounter(int totalCallsCounter) {
-        this.totalCallsCounter = totalCallsCounter;
     }
 
     public int getTotalMessagesCounter() {
         return totalMessagesCounter;
     }
 
-    public void setTotalMessagesCounter(int totalMessagesCounter) {
-        this.totalMessagesCounter = totalMessagesCounter;
-    }
-
-    public int getTotalDistinctOriginCountryCodes() {
+    public long getTotalDistinctOriginCountryCodes() {
         return totalDistinctOriginCountryCodes;
     }
 
-    public void setTotalDistinctOriginCountryCodes(int totalDistinctOriginCountryCodes) {
-        this.totalDistinctOriginCountryCodes = totalDistinctOriginCountryCodes;
-    }
-
-    public int getTotalDistinctDestinationCountryCodes() {
+    public long getTotalDistinctDestinationCountryCodes() {
         return totalDistinctDestinationCountryCodes;
     }
 
-    public void setTotalDistinctDestinationCountryCodes(int totalDistinctDestinationCountryCodes) {
-        this.totalDistinctDestinationCountryCodes = totalDistinctDestinationCountryCodes;
-    }
-
-    public int getJsonProcessDurationInMillis() {
+    public Map<String, Long> getJsonProcessDurationInMillis() {
         return jsonProcessDurationInMillis;
     }
 
-    public void setJsonProcessDurationInMillis(int jsonProcessDurationInMillis) {
-        this.jsonProcessDurationInMillis = jsonProcessDurationInMillis;
+    public static class Builder {
+        private Kpis kpis = new Kpis();
+
+        private Builder() {
+        }
+
+        public static Builder newInstance() {
+            return new Builder();
+        }
+
+        public Builder withProcessedJsonFilesCounter(int counter) {
+            kpis.processedJsonFilesCounter = counter;
+            return this;
+        }
+
+        public Builder withTotalRowsCounter(int counter) {
+            kpis.totalRowsCounter = counter;
+            return this;
+        }
+
+        public Builder withTotalCallsCounter(int counter) {
+            kpis.totalCallsCounter = counter;
+            return this;
+        }
+
+        public Builder withTotalMessagesCounter(int counter) {
+            kpis.totalMessagesCounter = counter;
+            return this;
+        }
+
+        public Builder withTotalDistinctOriginCountryCodes(long counter) {
+            kpis.totalDistinctOriginCountryCodes = counter;
+            return this;
+        }
+
+        public Builder withTotalDistinctDestinationCountryCodes(long counter) {
+            kpis.totalDistinctDestinationCountryCodes = counter;
+            return this;
+        }
+
+        public Builder withJsonProcessDurationInMillis(Map<String, Long> duration) {
+            kpis.jsonProcessDurationInMillis = duration;
+            return this;
+        }
+
+        public Kpis build() {
+            return kpis;
+        }
     }
 }

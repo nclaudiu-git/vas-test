@@ -139,6 +139,10 @@ public class Counters {
         this.startTimestamp = startTimestamp;
     }
 
+    public long getEndTimestamp() {
+        return endTimestamp;
+    }
+
     public void setEndTimestamp(long endTimestamp) {
         this.endTimestamp = endTimestamp;
     }

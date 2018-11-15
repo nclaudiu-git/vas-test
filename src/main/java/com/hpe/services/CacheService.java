@@ -2,12 +2,12 @@ package com.hpe.services;
 
 import com.hpe.Cache;
 import com.hpe.data.Counters;
+import com.hpe.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * The service is a helper for working with the cache database.
@@ -17,6 +17,19 @@ public class CacheService {
 
     @Autowired
     private Cache cache;
+
+    public boolean hasJsonFile(String file) {
+        return cache.containsKey(file);
+    }
+
+    /**
+     * Returns the latest JSON processed file based on the end timestamp.
+     */
+    public Result<String> getLatestJsonFile() {
+        List<Map.Entry<String, Counters>> list = new ArrayList<>(cache.entrySet());
+        Collections.sort(list, (a, b) -> (int) (b.getValue().getEndTimestamp() - a.getValue().getEndTimestamp()));
+        return list.size() > 0 ? Result.ok(list.get(0).getKey()) : Result.error("No json processed so far");
+    }
 
     private Counters getCounters(String file) {
         return cache.get(file);
@@ -183,9 +196,11 @@ public class CacheService {
                 .count();
     }
 
-    public long getTotalProcessingTimeInMillisCounter() {
-        return cache.values().stream()
-                .mapToLong(Counters::getProcessingTimeInMillis)
-                .sum();
+    public Map<String, Long> getProcessingTimeInMillisByJsonFileCounter() {
+        return cache.entrySet().stream()
+                .collect(Collectors.toMap(
+                        entry -> entry.getKey(),
+                        entry -> entry.getValue().getProcessingTimeInMillis()
+                ));
     }
 }

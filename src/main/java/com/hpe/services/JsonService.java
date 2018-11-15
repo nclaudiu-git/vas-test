@@ -33,7 +33,10 @@ public class JsonService {
     private CacheService cacheService;
 
     public void process(String file, Stream<String> stream) {
-        cacheService.addJsonFile(file);
+        if (!markJsonToProcess(file)) {
+            return;
+        }
+
         cacheService.setStartTimestamp(file, System.currentTimeMillis());
 
         Map<Long, List<Long>> durationByCountryCode = new HashMap<>();
@@ -44,6 +47,15 @@ public class JsonService {
         computeWordRankings(file, messageContentBuffer.toString());
 
         cacheService.setEndTimestamp(file, System.currentTimeMillis());
+    }
+
+    private synchronized boolean markJsonToProcess(String file) {
+        if (cacheService.hasJsonFile(file)) {
+            return false;
+        }
+
+        cacheService.addJsonFile(file);
+        return true;
     }
 
     private void processLine(String file, String line, Map<Long, List<Long>> durationByCountryCode, StringBuffer messageContentBuffer) {
