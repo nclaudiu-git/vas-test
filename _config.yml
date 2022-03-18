@@ -34,6 +34,8 @@ plugins:
     - jekyll-remote-plugin
     - jemoji
 
+permalink: pretty
+
 remote_theme: pages-themes/cayman@v0.2.0
 
 repository: nclaudiu-git/vas-test
@@ -61,6 +63,6 @@ markdown: kramdown
 #   - vendor/gems/
 #   - vendor/ruby/
 
-google_analytics: 
+google_analytics:
 show_downloads: true
 theme: jekyll-theme-cayman
