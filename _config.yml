@@ -60,3 +60,7 @@ markdown: kramdown
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
