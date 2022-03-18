@@ -1,4 +1,9 @@
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
 
-/.gradle/
-/.idea/
-/hpe.iml
+.idea/
+
+Gemfile.lock
